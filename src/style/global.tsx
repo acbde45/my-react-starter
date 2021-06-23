@@ -19,16 +19,6 @@ const GlobalStyle = () => {
       color: ${theme.colors.text};
       text-decoration: none;
     }
-    a:visited,
-    a:focus,
-    a:active {
-      color: ${theme.colors.text};
-      text-decoration: none;
-    }
-    a:hover {
-      color: ${theme.colors.text};
-      text-decoration: none;
-    }
     code,
     pre {
       font-family: ${theme.fonts.mono};

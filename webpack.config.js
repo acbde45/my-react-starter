@@ -117,25 +117,13 @@ module.exports = function config(env, options) {
         {
           oneOf: [
             {
-              test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
+              test: /\.(ico|jpg|jpeg|png|gif|svg|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
               use: {
                 loader: 'file-loader',
                 options: {
                   name: '[path][name].[ext]',
                 },
               },
-            },
-            {
-              test: /\.svg$/,
-              use: [
-                'babel-loader',
-                {
-                  loader: 'react-svg-loader',
-                  options: {
-                    jsx: true,
-                  },
-                },
-              ],
             },
             {
               test: /\.(js|mjs|ts|tsx)$/,
