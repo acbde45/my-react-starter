@@ -10,12 +10,12 @@ export const device = {
   desktop: `(min-width: ${breakpoints.l}px)`,
 };
 
-export const rgba = (hex: string, alpha: number) => {
+export const rgba = (hex: string, alpha: number): string => {
   const [r, g, b] = (hex.match(/\w\w/g) as string[]).map(x => parseInt(x, 16));
   return `rgba(${r},${g},${b},${alpha})`;
 };
 
-export const px = (val: string | number) => `${val}px`;
+export const px = (val: string | number): string => `${val}px`;
 
 export default {
   breakpoints,
