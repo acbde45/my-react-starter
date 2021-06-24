@@ -1,9 +1,9 @@
-import logo from '@/assets/logo.svg';
 import GlobalStyle from '@/style/global';
 import NormalizeStyle from '@/style/normalize';
 import theme from '@/style/theme';
-import { ThemeProvider } from '@emotion/react';
+import { keyframes, ThemeProvider } from '@emotion/react';
 import styled from '@emotion/styled';
+import logo from '@images/logo.svg';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -12,21 +12,21 @@ const AppLogo = styled.img`
   pointer-events: none;
 `;
 
+const AppLogoSpin = keyframes({
+  'from, to': {
+    transform: 'rotate(0deg)',
+  },
+  to: {
+    transform: 'rotate(360deg)',
+  },
+});
+
 const AppContainer = styled.div`
   text-align: center;
 
   @media (prefers-reduced-motion: no-preference) {
     ${AppLogo} {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
-
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
+      animation: ${AppLogoSpin} infinite 20s linear;
     }
   }
 `;
@@ -44,9 +44,6 @@ const AppHeader = styled.header`
 
 const AppLink = styled.a`
   color: #61dafb;
-  :visited {
-    color: #61dafb;
-  }
 `;
 
 const App = () => {

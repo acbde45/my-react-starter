@@ -2,8 +2,10 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
-    "target": "ESNext",
-    "module": "ESNext",
+    /* 基本选项 */
+    "baseUrl": ".",
+    "target": "ES5", // 指定生产后的ECMAScript目标版本
+    "module": "ESNext", // 指定使用的模块系统
     "lib": [
       "DOM",
       "DOM.Iterable",
@@ -11,22 +13,26 @@
       "WebWorker"
     ],
     "allowJs": true,
-    "jsx": "preserve",
-    "noEmit": true,
-    "isolatedModules": true,
-    "strict": true,
-    "strictPropertyInitialization": false,
+    "jsx": "preserve", // 在preserve模式下生成代码中会保留JSX以供后续的转换操作使用（比如：Babel)
+    "noEmit": true, // 不生成输出文件
+    "isolatedModules": true, // 一个文件对应一个模块
+
+    /* 严格的类型检查选项 */
+    "strict": true, // 启⽤所有严格类型检查选项
+    "strictPropertyInitialization": false, // 严格的属性初始化
+
+    /* 模块解析选项 */
     "moduleResolution": "node",
     "types": [
       "@types/webpack-env",
       "@emotion/react/types/css-prop",
     ],
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
+    "esModuleInterop": true, // 兼容导入commonjs模块
+    "forceConsistentCasingInFileNames": true, // 强制在文件名中使用一致的大小写
+    "resolveJsonModule": true, // 解析json模块
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["src/*"],
+      "@images/*": ["public/images/*"],
     }, 
   },
   "exclude": ["build/**/*", ".cache/**/*", "node_modules/**/*"]

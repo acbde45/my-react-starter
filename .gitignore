@@ -25,3 +25,7 @@ yarn-error.log*
 
 # eslint生产的缓存文件
 .cache
+.eslintcache
+
+# vscode debugger产生的文件
+.vscode/chrome

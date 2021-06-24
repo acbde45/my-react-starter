@@ -1,13 +1,20 @@
 {
   "name": "my-react-starter",
   "version": "0.1.0-beta",
+  "author": "acbde45",
   "description": "A Web Framework for B2B applications",
   "scripts": {
     "start": "webpack serve --mode=development",
     "build": "webpack --mode=production",
-    "lint": "eslint --cache --report-unused-disable-directives ."
+    "lint": "eslint --cache .",
+    "precommit": "lint-staged"
   },
-  "author": "acbde45",
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "license": "MIT",
   "dependencies": {
     "@emotion/core": "^11.0.0",
@@ -51,17 +58,19 @@
     "babel-plugin-import": "^1.13.3",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "copy-webpack-plugin": "^9.0.0",
-    "cross-spawn": "^7.0.3",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
+    "husky": "^6.0.0",
     "inline-chunk-html-plugin": "^1.1.1",
+    "lint-staged": "^11.0.0",
     "prettier": "^2.3.1",
     "react-refresh": "^0.10.0",
     "react-svg-loader": "^3.0.3",

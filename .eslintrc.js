@@ -1,5 +1,3 @@
-const path = require('path');
-
 /**
  * ESLint 配置
  *
@@ -9,11 +7,11 @@ const path = require('path');
 module.exports = {
   root: true,
 
-  env: { browser: true },
+  env: { es6: true, browser: true },
 
   plugins: ['prettier'],
 
-  extends: ['eslint:recommended', 'prettier', 'prettier/react'],
+  extends: ['eslint:recommended', 'prettier'],
 
   parserOptions: { ecmaVersion: 2020 },
 

@@ -7,7 +7,31 @@ const fontSizes = [12, 16, 20, 24, 36, 48, 54];
 const fontSizesPx = fontSizes.map(px);
 const breakpointsPx = Object.values(breakpoints).map(px);
 
-const theme = {
+export interface Theme {
+  fonts: {
+    sans: string;
+    mono: string;
+  };
+  space: number[];
+  spacePx: string[];
+  fontSizes: number[];
+  fontSizesPx: string[];
+  breakpoints: string[];
+  boxShadow: string;
+  colors: {
+    primary: string;
+    orange: string;
+    blue: string;
+    red: string;
+    purple: string;
+    green: string;
+    text: string;
+    textLight: string;
+    lightGrey: string;
+  };
+}
+
+const theme: Theme = {
   fonts: {
     sans: "-apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, Arial, sans-serif",
     mono: 'monospace',

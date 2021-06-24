@@ -105,6 +105,7 @@ module.exports = function config(env, options) {
       // 别名
       alias: {
         '@': path.join(__dirname, './src'),
+        '@images': path.join(__dirname, './public/images'),
         ...(isEnvProductionProfile && {
           'react-dom$': 'react-dom/profiling',
           'scheduler/tracing': 'scheduler/tracing-profiling',
@@ -178,6 +179,7 @@ module.exports = function config(env, options) {
       new webpack.DefinePlugin({
         'process.env.APP_NAME': JSON.stringify('React App'),
         'process.env.APP_ORIGIN': JSON.stringify('http://localhost:3000'),
+        'process.env.PUBLIC_URL': path.join(__dirname, './public'),
       }),
       isDevServer && new webpack.HotModuleReplacementPlugin(),
       isDevServer && new ReactRefreshWebpackPlugin(),
