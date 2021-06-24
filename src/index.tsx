@@ -1,11 +1,13 @@
+import { keyframes, ThemeProvider } from '@emotion/react';
+import styled from '@emotion/styled';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 import GlobalStyle from '@/style/global';
 import NormalizeStyle from '@/style/normalize';
 import theme from '@/style/theme';
-import { keyframes, ThemeProvider } from '@emotion/react';
-import styled from '@emotion/styled';
+
 import logo from '@images/logo.svg';
-import React from 'react';
-import ReactDOM from 'react-dom';
 
 const AppLogo = styled.img`
   height: 40vmin;

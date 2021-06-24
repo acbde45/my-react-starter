@@ -38,4 +38,7 @@ module.exports = {
     </button>
      */
   jsxBracketSameLine: false,
+
+  importOrder: ['^@/(.*)/(.*)$', '^@images/(.*)$', '^[./]'],
+  importOrderSeparation: true,
 };
