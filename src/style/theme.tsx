@@ -10,7 +10,6 @@ const breakpointsPx = Object.values(breakpoints).map(px);
 export interface Theme {
   fonts: {
     sans: string;
-    mono: string;
   };
   space: number[];
   spacePx: string[];
@@ -20,21 +19,14 @@ export interface Theme {
   boxShadow: string;
   colors: {
     primary: string;
-    orange: string;
-    blue: string;
-    red: string;
-    purple: string;
-    green: string;
     text: string;
     textLight: string;
-    lightGrey: string;
   };
 }
 
 const theme: Theme = {
   fonts: {
     sans: "-apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, Arial, sans-serif",
-    mono: 'monospace',
   },
   space,
   spacePx,
@@ -44,14 +36,8 @@ const theme: Theme = {
   boxShadow: '0px 16px 64px rgba(26, 25, 43, 0.32);',
   colors: {
     primary: '#0041D0',
-    orange: '#FF6700',
-    blue: '#0041D0',
-    red: '#FF0072',
-    purple: '#784BE8',
-    green: '#00D7CA',
     text: '#1A192B',
     textLight: '#808080',
-    lightGrey: '#D9D9D9',
   },
 };
 
