@@ -1,4 +1,5 @@
 import { css, Global, useTheme } from '@emotion/react';
+
 import { Theme } from './theme';
 
 const GlobalStyle = () => {
