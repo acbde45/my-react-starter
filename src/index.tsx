@@ -1,19 +1,16 @@
-import { ThemeProvider } from '@emotion/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-import App from '@/components/App';
-import GlobalStyle from '@/style/global';
-import NormalizeStyle from '@/style/normalize';
-import theme from '@/style/theme';
+import store from '@/store';
+
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <NormalizeStyle />
-      <GlobalStyle />
+    <Provider store={store}>
       <App />
-    </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

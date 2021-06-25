@@ -39,6 +39,6 @@ module.exports = {
      */
   jsxBracketSameLine: false,
 
-  importOrder: ['^@/(.*)/(.*)$', '^@images/(.*)$', '^[./]'],
+  importOrder: ['^@/(.*)$', '^@images/(.*)$', '^[./]'],
   importOrderSeparation: true,
 };
