@@ -1,4 +1,5 @@
 const path = require('path');
+const chalk = require('chalk');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -7,9 +8,21 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const InlineChunkHtmlPlugin = require('inline-chunk-html-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin');
+const portfinder = require('portfinder');
 
 require('@babel/register')({ extensions: ['.ts'], cache: false });
 const configs = require('./config');
+
+const isInteractive = process.stdout.isTTY;
+
+const DEFAULT_PORT = 3000;
+portfinder.basePort = DEFAULT_PORT;
+
+function clearConsole() {
+  process.stdout.write(process.platform === 'win32' ? '\x1B[2J\x1B[0f' : '\x1B[2J\x1B[3J\x1B[H');
+}
+
 /**
  * Webpack配置
  *
@@ -18,7 +31,28 @@ const configs = require('./config');
  * @param {{ mode: "production" | "development" }} options
  * @returns {import("webpack").Configuration}
  */
-module.exports = function config(env, options) {
+module.exports = async function config(env, options) {
+  // —————— 检查端口号有没有被占用
+  let currentPort = DEFAULT_PORT;
+  try {
+    currentPort = await portfinder.getPortPromise();
+  } catch (err) {
+    throw new Error(
+      chalk.red(`Could not find an open port at ${chalk.bold(DEFAULT_PORT)}.`) +
+        '\n' +
+        ('Network error message: ' + err.message || err) +
+        '\n'
+    );
+  }
+  if (currentPort !== DEFAULT_PORT) {
+    const message = `Something is already running on port ${DEFAULT_PORT}.`;
+    if (isInteractive) {
+      clearConsole();
+    }
+    console.log(chalk.red(message));
+    process.exit(0);
+  }
+
   const isEnvProduction = options.mode === 'production';
   const isEnvDevelopment = options.mode === 'development';
   const isDevServer = isEnvDevelopment && process.argv.includes('serve');
@@ -183,6 +217,8 @@ module.exports = function config(env, options) {
       }),
       isDevServer && new webpack.HotModuleReplacementPlugin(),
       isDevServer && new ReactRefreshWebpackPlugin(),
+      // 更友好的控制台错误提示
+      isDevServer && new FriendlyErrorsWebpackPlugin(),
       options.analyze && new BundleAnalyzerPlugin(),
     ].filter(Boolean),
   };
@@ -197,8 +233,9 @@ module.exports = function config(env, options) {
     contentBase: './public',
     compress: true, // gzip
     historyApiFallback: { disableDotRule: true },
-    port: 3000,
+    port: DEFAULT_PORT,
     hot: true,
+    quiet: true,
     proxy: [
       {
         context: [config.api.path, '/auth'],

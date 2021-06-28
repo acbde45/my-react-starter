@@ -4,16 +4,16 @@
 export const local = {
   // Core application settings
   app: {
-    name: "React App",
-    origin: "http://localhost:3000",
-    env: "local" as "local" | "test" | "prod",
+    name: 'React App',
+    origin: 'http://localhost:3000',
+    env: 'local' as 'local' | 'test' | 'prod',
   },
   // GraphQL API and OAuth endpoint(s)
   // https://github.com/kriasoft/node-starter-kit
   api: {
-    origin: "https://us-central1-kriasoft.cloudfunctions.net",
-    prefix: "/reactstarter", // Cloud Function URL pathname
-    path: "/api",
+    origin: 'https://us-central1-kriasoft.cloudfunctions.net',
+    prefix: '/reactstarter', // Cloud Function URL pathname
+    path: '/api',
   },
 };
 
@@ -23,12 +23,12 @@ export const local = {
 export const test: typeof local = {
   app: {
     ...local.app,
-    origin: "https://test.example.com",
-    env: "test",
+    origin: 'https://test.example.com',
+    env: 'test',
   },
   api: {
     ...local.api,
-    origin: "https://us-central1.example-test.cloudfunctions.net",
+    origin: 'https://us-central1.example-test.cloudfunctions.net',
   },
 };
 
@@ -38,12 +38,12 @@ export const test: typeof local = {
 export const prod: typeof local = {
   app: {
     ...local.app,
-    origin: "https://example.com",
-    env: "prod",
+    origin: 'https://example.com',
+    env: 'prod',
   },
   api: {
     ...local.api,
-    origin: "https://us-central1.example.cloudfunctions.net",
+    origin: 'https://us-central1.example.cloudfunctions.net',
   },
 };
 
