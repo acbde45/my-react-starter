@@ -11,6 +11,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin');
 const portfinder = require('portfinder');
 
+// 让后续的ts文件能被babel转码，主要是config.ts
 require('@babel/register')({ extensions: ['.ts'], cache: false });
 const configs = require('./config');
 
