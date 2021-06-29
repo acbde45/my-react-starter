@@ -11,7 +11,7 @@
 **[使用这个模版创建一个 Github 仓库](https://github.com/wbkd/react-starter/generate)** 或者克隆这个项目:
 
 ```sh
-git clone git@github.com:wbkd/react-starter.git --depth=1 && cd react-starter
+git clone git@github.com:acbde45/my-react-starter.git --depth=1 && cd react-starter
 ```
 
 ## Development
