@@ -17,6 +17,8 @@ module.exports = {
   arrowParens: 'avoid',
   // 换行长度，默认120
   printWidth: 120,
+  // 检测换行符类型，如果出现大量换行符报错，可以修改为auto不检测
+  endOfLine: 'lf',
 
   // 设置为true时,将多行JSX元素的 > 放在最后一行的末尾，而不是单独放在下一行
   /* 

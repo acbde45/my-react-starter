@@ -1,6 +1,6 @@
 import { css, Global } from '@emotion/react';
 import emotionNormalize from 'emotion-normalize';
-import { memo } from 'react';
+import React, { memo } from 'react';
 
 const NormalizeStyle = memo(() => {
   const globalStyles = css`
@@ -9,5 +9,7 @@ const NormalizeStyle = memo(() => {
 
   return <Global styles={globalStyles} />;
 });
+
+NormalizeStyle.displayName = 'NormalizeStyle';
 
 export default NormalizeStyle;

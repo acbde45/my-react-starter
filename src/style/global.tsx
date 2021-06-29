@@ -1,8 +1,9 @@
 import { css, Global, useTheme } from '@emotion/react';
+import React from 'react';
 
 import { Theme } from './theme';
 
-const GlobalStyle = () => {
+function GlobalStyle(): React.ReactNode {
   const theme = useTheme() as Theme;
 
   const globalStyles = css`
@@ -29,6 +30,6 @@ const GlobalStyle = () => {
   `;
 
   return <Global styles={globalStyles} />;
-};
+}
 
 export default GlobalStyle;

@@ -9,10 +9,10 @@
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "ESNext",
-      "WebWorker"
+      "ESNext"
     ],
     "allowJs": true,
+    "skipLibCheck": true, // 跳过所有声明文件的类型检查
     "jsx": "preserve", // 在preserve模式下生成代码中会保留JSX以供后续的转换操作使用（比如：Babel)
     "noEmit": true, // 不生成输出文件
     "isolatedModules": true, // 一个文件对应一个模块
@@ -30,6 +30,7 @@
     "esModuleInterop": true, // 兼容导入commonjs模块
     "forceConsistentCasingInFileNames": true, // 强制在文件名中使用一致的大小写
     "resolveJsonModule": true, // 解析json模块
+    "allowSyntheticDefaultImports": true, // 如果没有export default会去尝试module.exports作为默认的导入
     "paths": {
       "@/*": ["src/*"],
       "@images/*": ["public/images/*"],
