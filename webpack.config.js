@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const InlineChunkHtmlPlugin = require('inline-chunk-html-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -91,7 +91,7 @@ module.exports = async function config(env, options) {
       uniqueName: 'app',
     },
 
-    devtool: isEnvProduction ? 'source-map' : 'cheap-module-source-map',
+    devtool: isEnvProduction ? 'hidden-source-map' : 'eval-cheap-module-source-map',
 
     optimization: {
       minimize: isEnvProduction,
@@ -136,11 +136,11 @@ module.exports = async function config(env, options) {
 
     resolve: {
       // 省略文件后缀
-      extensions: ['.wasm', '.mjs', '.js', '.ts', '.d.ts', '.tsx', '.json'],
+      extensions: ['.js', '.ts', '.d.ts', '.tsx'],
       // 别名
       alias: {
         '@': path.join(__dirname, './src'),
-        '@images': path.join(__dirname, './public/images'),
+        '@media': path.join(__dirname, './public/mdeia'),
         ...(isEnvProductionProfile && {
           'react-dom$': 'react-dom/profiling',
           'scheduler/tracing': 'scheduler/tracing-profiling',
@@ -153,16 +153,7 @@ module.exports = async function config(env, options) {
         {
           oneOf: [
             {
-              test: /\.(ico|jpg|jpeg|png|gif|svg|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
-              use: {
-                loader: 'file-loader',
-                options: {
-                  name: '[path][name].[ext]',
-                },
-              },
-            },
-            {
-              test: /\.(js|mjs|ts|tsx)$/,
+              test: /\.(js|ts|tsx)$/,
               include: [path.resolve(__dirname, './src'), path.resolve(__dirname, './config')],
               loader: 'babel-loader',
               options: {
@@ -172,6 +163,25 @@ module.exports = async function config(env, options) {
                 cacheCompression: false,
                 compact: false, // isEnvProduction,
                 sourceType: 'unambiguous',
+              },
+            },
+            {
+              test: /\.(eot|otf|ttf|woff|woff2)$/,
+              type: 'asset/resource',
+              generator: {
+                filename: 'static/media/font/[hash][ext][query]',
+              },
+            },
+            {
+              test: /\.(ico|jpg|jpeg|png|gif|svg)$/,
+              type: 'asset',
+              parser: {
+                dataUrlCondition: {
+                  maxSize: 8 * 1024, // 8kb
+                },
+              },
+              generator: {
+                filename: 'static/media/images/[hash][ext][query]',
               },
             },
           ],
@@ -231,7 +241,7 @@ module.exports = async function config(env, options) {
    * @type {import("webpack-dev-server").Configuration}
    */
   const devServer = {
-    contentBase: './public',
+    contentBase: path.join(__dirname, './public'),
     compress: true, // gzip
     historyApiFallback: { disableDotRule: true },
     port: DEFAULT_PORT,

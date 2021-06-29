@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { increment, selectCount } from '@/store/reducers/counter';
 
-import logo from '@images/logo.svg';
+import logo from './logo.svg';
 
 const Logo = styled.img`
   height: 40vmin;
